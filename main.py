@@ -1,10 +1,11 @@
 """
+Criteria: 
 Build a basic URL Validator.
 Returns a list of responses.
 Basic GET and POSTS requests validated.
-If GET request contains valid token, return VALID and user name.
+If GET request contains valid token, return VALID and user name parameter.
 If GET request does not contain valid token, return INVALID
-If POST request contains valid token and contains valid CSRF token, return VALID and user name.
+If POST request contains valid token and contains valid CSRF token, return VALID and user name parameter.
 """
 
 from urllib.parse import urlparse, parse_qs
@@ -19,7 +20,7 @@ def getResponses(valid_auth_tokens, requests):
             parsed_url_params = parse_qs(parsed_result.query)
             token_value = parsed_url_params['token'][0]
             name_value = parsed_url_params['name'][0]
-            
+
             if token_value in valid_auth_tokens:
                 response = [f"VALID, name: {name_value}"]
                 responses.append(response)
